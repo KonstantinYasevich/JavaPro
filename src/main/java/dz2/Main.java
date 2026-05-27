@@ -26,6 +26,11 @@ public class Main {
         Employee employee5 = new Employee("Masha", 18, "secretary");
         List<Employee> employees = new ArrayList<>(List.of(employee1, employee2, employee3, employee4, employee5));
         getThreeOlderEngineers(employees);
+        //4
+        getAverageAge(employees);
+        //5
+        List<String> words = new ArrayList<>(List.of("word", "pneumonoultramicroscopicsilicovolcanoconiosis", "number", "dog", "cat"));
+        getLongWord(words);
     }
 
     private static int getThirdMax(List<Integer> list)
@@ -64,4 +69,24 @@ public class Main {
 
        return result;
     }
+
+    private static double getAverageAge(List<Employee> employees) {
+        double result = employees.stream()
+                .mapToInt(Employee::getAge)
+                .average()
+                .orElse(0.0);
+        System.out.println("Средний возраст - " + result);
+        return result;
+    }
+
+    private static String getLongWord(List<String> words) {
+        String result = words.stream()
+                .max(Comparator.comparingInt(String::length))
+                .orElse("");
+
+        System.out.println("Самое длинное слово - " + result);
+        return result;
+    }
+
+
 }
