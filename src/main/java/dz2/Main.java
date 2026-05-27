@@ -19,6 +19,13 @@ public class Main {
         //2
         getThirdMaxDistinct(list);
         //3
+        Employee employee1 = new Employee("Vasya", 50, "engineer");
+        Employee employee2 = new Employee("Vova", 40, "engineer");
+        Employee employee3 = new Employee("Vahid", 30, "engineer");
+        Employee employee4 = new Employee("Vahtang", 20, "engineer");
+        Employee employee5 = new Employee("Masha", 18, "secretary");
+        List<Employee> employees = new ArrayList<>(List.of(employee1, employee2, employee3, employee4, employee5));
+        getThreeOlderEngineers(employees);
     }
 
     private static int getThirdMax(List<Integer> list)
@@ -42,5 +49,19 @@ public class Main {
                 .orElseThrow(() -> new IllegalArgumentException("В списке меньше 3 элементов"));
         System.out.println("3 уникальный максимум - " + result);
         return result;
+    }
+
+    private static List<Employee> getThreeOlderEngineers(List<Employee> employees){
+       List<Employee> result = employees.stream()
+                .filter(e -> "engineer".equalsIgnoreCase(e.getPosition()))
+                .sorted(Comparator.comparingInt(Employee::getAge).reversed())
+                .limit(3)
+                .toList();
+
+       result.stream()
+               .map(e -> String.format("Имя: %s | Возраст: %d | Должность: %s", e.getName(), e.getAge(), e.getPosition()))
+               .forEach(System.out::println);
+
+       return result;
     }
 }
