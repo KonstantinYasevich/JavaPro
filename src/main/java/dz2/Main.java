@@ -6,10 +6,7 @@ import dz1.TestRunner;
 import dz1.Tests;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args)  {
@@ -31,6 +28,9 @@ public class Main {
         //5
         List<String> words = new ArrayList<>(List.of("word", "pneumonoultramicroscopicsilicovolcanoconiosis", "number", "dog", "cat"));
         getLongWord(words);
+        //6
+        String senterence = "Косил косой косой косой";
+        wordCount(senterence);
     }
 
     private static int getThirdMax(List<Integer> list)
@@ -85,6 +85,15 @@ public class Main {
                 .orElse("");
 
         System.out.println("Самое длинное слово - " + result);
+        return result;
+    }
+
+    private static HashMap<String, Integer> wordCount(String words){
+        HashMap<String, Integer> result = new HashMap<>();
+        Arrays.stream(words.split(" "))
+                .map(String::toLowerCase)
+                .forEach(word -> result.put(word, result.getOrDefault(word, 0) + 1));
+        System.out.println(result);
         return result;
     }
 
