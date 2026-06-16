@@ -1,16 +1,10 @@
 package dz2;
 
-import dz1.Test;
-import dz1.TestResult;
-import dz1.TestRunner;
-import dz1.Tests;
-
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 
 public class Main {
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         List<Integer> list = new ArrayList<>(List.of(5, 2, 10, 9, 4, 3, 10, 1, 13));
         //1
         getThirdMax(list);
@@ -32,8 +26,10 @@ public class Main {
         //6
         String sentence = "Косил косой косой косой";
         wordCount(sentence);
+        //7
         List<String> wordsForSort = Arrays.asList("яблоко", "арбуз", "банан", "еж", "дом", "кот");
         wordDoubleSort(wordsForSort);
+        //8
         String[] lines = {
                 "яблоко арбуз банан еж дом",
                 "автомобиль кот пес окно дерево",
@@ -43,9 +39,8 @@ public class Main {
 
     }
 
-    private static int getThirdMax(List<Integer> list)
-    {
-       int result =  list.stream()
+    private static int getThirdMax(List<Integer> list) {
+        int result = list.stream()
                 .sorted(Comparator.reverseOrder())
                 .skip(2)
                 .findFirst()
@@ -54,9 +49,8 @@ public class Main {
         return result;
     }
 
-    private static int getThirdMaxDistinct(List<Integer> list)
-    {
-        int result =  list.stream()
+    private static int getThirdMaxDistinct(List<Integer> list) {
+        int result = list.stream()
                 .distinct()
                 .sorted(Comparator.reverseOrder())
                 .skip(2)
@@ -66,18 +60,18 @@ public class Main {
         return result;
     }
 
-    private static List<Employee> getThreeOlderEngineers(List<Employee> employees){
-       List<Employee> result = employees.stream()
+    private static List<Employee> getThreeOlderEngineers(List<Employee> employees) {
+        List<Employee> result = employees.stream()
                 .filter(e -> "engineer".equalsIgnoreCase(e.getPosition()))
                 .sorted(Comparator.comparingInt(Employee::getAge).reversed())
                 .limit(3)
                 .toList();
 
-       result.stream()
-               .map(e -> String.format("Имя: %s | Возраст: %d | Должность: %s", e.getName(), e.getAge(), e.getPosition()))
-               .forEach(System.out::println);
+        result.stream()
+                .map(e -> String.format("Имя: %s | Возраст: %d | Должность: %s", e.getName(), e.getAge(), e.getPosition()))
+                .forEach(System.out::println);
 
-       return result;
+        return result;
     }
 
     private static double getAverageAge(List<Employee> employees) {
@@ -98,7 +92,7 @@ public class Main {
         return result;
     }
 
-    private static HashMap<String, Integer> wordCount(String words){
+    private static HashMap<String, Integer> wordCount(String words) {
         HashMap<String, Integer> result = new HashMap<>();
         Arrays.stream(words.split(" "))
                 .map(String::toLowerCase)
@@ -107,14 +101,14 @@ public class Main {
         return result;
     }
 
-    private static void wordDoubleSort(List<String> words){
+    private static void wordDoubleSort(List<String> words) {
         words.stream()
                 .sorted(Comparator.comparing(String::length)
                         .thenComparing(Comparator.naturalOrder()))
                 .forEach(System.out::println);
     }
 
-    private static String longestWord(String[] words){
+    private static String longestWord(String[] words) {
         String longestWord = Arrays.stream(words)
                 .flatMap(line -> Arrays.stream(line.split(" ")))
                 .max(Comparator.comparingInt(String::length))
