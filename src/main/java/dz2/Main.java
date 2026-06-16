@@ -29,8 +29,10 @@ public class Main {
         List<String> words = new ArrayList<>(List.of("word", "pneumonoultramicroscopicsilicovolcanoconiosis", "number", "dog", "cat"));
         getLongWord(words);
         //6
-        String senterence = "Косил косой косой косой";
-        wordCount(senterence);
+        String sentence = "Косил косой косой косой";
+        wordCount(sentence);
+        List<String> wordsForSort = Arrays.asList("яблоко", "арбуз", "банан", "еж", "дом", "кот");
+        wordDoubleSort(wordsForSort);
     }
 
     private static int getThirdMax(List<Integer> list)
@@ -95,6 +97,13 @@ public class Main {
                 .forEach(word -> result.put(word, result.getOrDefault(word, 0) + 1));
         System.out.println(result);
         return result;
+    }
+
+    private static void wordDoubleSort(List<String> words){
+        words.stream()
+                .sorted(Comparator.comparing(String::length)
+                        .thenComparing(Comparator.naturalOrder()))
+                .forEach(System.out::println);
     }
 
 
