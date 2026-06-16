@@ -8,6 +8,7 @@ import dz1.Tests;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
+
 public class Main {
     public static void main(String[] args)  {
         List<Integer> list = new ArrayList<>(List.of(5, 2, 10, 9, 4, 3, 10, 1, 13));
@@ -33,6 +34,13 @@ public class Main {
         wordCount(sentence);
         List<String> wordsForSort = Arrays.asList("яблоко", "арбуз", "банан", "еж", "дом", "кот");
         wordDoubleSort(wordsForSort);
+        String[] lines = {
+                "яблоко арбуз банан еж дом",
+                "автомобиль кот пес окно дерево",
+                "мама мыла раму очень чисто"
+        };
+        longestWord(lines);
+
     }
 
     private static int getThirdMax(List<Integer> list)
@@ -106,5 +114,13 @@ public class Main {
                 .forEach(System.out::println);
     }
 
+    private static String longestWord(String[] words){
+        String longestWord = Arrays.stream(words)
+                .flatMap(line -> Arrays.stream(line.split(" ")))
+                .max(Comparator.comparingInt(String::length))
+                .orElse("");
+        System.out.println("Самое длинное слово - " + longestWord);
+        return longestWord;
+    }
 
 }
