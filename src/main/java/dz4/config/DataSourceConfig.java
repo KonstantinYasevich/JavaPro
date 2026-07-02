@@ -1,4 +1,4 @@
-package dz4;
+package dz4.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
