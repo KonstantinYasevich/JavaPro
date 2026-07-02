@@ -11,7 +11,6 @@ public class UserService {
 
     private final UserDao userDao;
 
-    // Внедряем UserDao через конструктор
     public UserService(UserDao userDao) {
         this.userDao = userDao;
     }

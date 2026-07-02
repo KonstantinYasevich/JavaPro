@@ -4,7 +4,6 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
@@ -39,7 +38,6 @@ public class DataSourceConfig {
         config.setUsername(dbUsername);
         config.setPassword(dbPassword);
         config.setDriverClassName(dbDriver);
-
         config.setMaximumPoolSize(maxPoolSize);
         config.setMinimumIdle(minIdle);
 
