@@ -4,13 +4,15 @@ import dz4.config.DataSourceConfig;
 import dz4.pojo.User;
 import dz4.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.util.List;
 
+@ComponentScan(basePackages = "dz4")
 public class Main {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(DataSourceConfig.class);
+                new AnnotationConfigApplicationContext(Main.class);
 
         UserService userService = context.getBean(UserService.class);
 
