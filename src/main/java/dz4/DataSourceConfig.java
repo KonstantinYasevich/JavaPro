@@ -3,20 +3,22 @@ package dz4;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
 @Configuration
+@ComponentScan(basePackages = "dz4")
 public class DataSourceConfig {
 
     @Bean
     public DataSource dataSource() {
         HikariConfig config = new HikariConfig();
 
-        config.setJdbcUrl("jdbc:postgresql://localhost:5432/my_database");
-        config.setUsername("db_user");
-        config.setPassword("db_password");
+        config.setJdbcUrl("jdbc:postgresql://localhost:5433/databaseJP");
+        config.setUsername("postgres");
+        config.setPassword("password");
         config.setDriverClassName("org.postgresql.Driver");
 
         config.setMaximumPoolSize(10);
