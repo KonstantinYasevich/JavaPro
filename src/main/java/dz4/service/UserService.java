@@ -1,7 +1,7 @@
 package dz4.service;
 
 import dz4.dao.UserDao;
-import dz4.pojo.User;
+import dz4.entity.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

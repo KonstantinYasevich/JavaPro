@@ -1,6 +1,6 @@
 package dz4.dao;
 
-import dz4.pojo.User;
+import dz4.entity.User;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
