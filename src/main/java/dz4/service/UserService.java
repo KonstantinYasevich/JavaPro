@@ -1,6 +1,5 @@
 package dz4.service;
 
-import dz4.dao.UserDao;
 import dz4.entity.User;
 import dz4.repository.UserRepository;
 import org.springframework.stereotype.Service;
