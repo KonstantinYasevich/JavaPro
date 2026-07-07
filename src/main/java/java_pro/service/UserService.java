@@ -1,7 +1,7 @@
-package service;
+package java_pro.service;
 
-import entity.User;
-import repository.UserRepository;
+import java_pro.entity.User;
+import java_pro.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

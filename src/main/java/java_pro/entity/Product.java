@@ -1,4 +1,4 @@
-package entity;
+package java_pro.entity;
 
 import jakarta.persistence.*;
 
@@ -19,16 +19,19 @@ public class Product {
     @Column(name = "type", nullable = false)
     private String type;
 
-    @ManyToOne(fetch = FetchType.LAZY) // LAZY, чтобы не тянуть юзера из БД без необходимости
-    @JoinColumn(name = "iser_id", nullable = false)
-    private Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    public Product() {
+    }
 
     public Product(Long id, Integer accountNumber, Double balance, String type, Long userId) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.type = type;
-        this.userId = userId;
+        this.user = user;
     }
 
     public Long getId() {
@@ -47,8 +50,8 @@ public class Product {
         return type;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
     public void setId(Long id) {
@@ -67,8 +70,8 @@ public class Product {
         this.type = type;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUserId(User user) {
+        this.user = user;
     }
 
     @Override

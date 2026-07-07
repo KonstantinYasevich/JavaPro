@@ -1,6 +1,6 @@
-package dao;
+package java_pro.dao;
 
-import entity.User;
+import java_pro.entity.User;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;

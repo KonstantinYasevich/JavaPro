@@ -1,6 +1,6 @@
-package repository;
+package java_pro.repository;
 
-import entity.User;
+import java_pro.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
