@@ -1,6 +1,6 @@
-package dz4.dao;
+package dao;
 
-import dz4.entity.User;
+import entity.User;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;

@@ -1,7 +1,7 @@
-package dz4.service;
+package service;
 
-import dz4.entity.User;
-import dz4.repository.UserRepository;
+import entity.User;
+import repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
