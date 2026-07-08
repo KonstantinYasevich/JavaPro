@@ -21,7 +21,7 @@ public class PaymentCoreService {
         this.restTemplate = restTemplate;
     }
 
-    // 1. HTTP-запрос списка продуктов пользователя из внешнего сервиса
+    // 1. HTTP-запрос списка продуктов пользователя из продуктов
     public List<ProductDto> getUserProductsFromProductService(Long userId) {
         String url = UriComponentsBuilder.fromHttpUrl(productServiceUrl)
                 .queryParam("userId", userId)
