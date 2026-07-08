@@ -1,6 +1,6 @@
-package java_pro.repository;
+package app.repository;
 
-import java_pro.entity.Product;
+import app.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;

@@ -1,10 +1,10 @@
-package java_pro.service;
+package app.service;
 
-import java_pro.dto.ProductDto;
-import java_pro.entity.Product;
+import app.entity.Product;
+import app.repository.ProductRepository;
+import app.dto.ProductDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java_pro.repository.ProductRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +30,20 @@ public class ProductService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Продукт с id " + productId + " не найден"));
         return convertToDto(product);
+    }
+
+    @Transactional
+    public ProductDto updateBalance(Long productId, Double amount) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Продукт с id " + productId + " не найден"));
+
+        if (product.getType().equals("Дебетовая карта") && (product.getBalance() + amount) < 0) {
+            throw new IllegalArgumentException("Недостаточно средств на дебетовой карте");
+        }
+
+        product.setBalance(product.getBalance() + amount);
+        Product updated = productRepository.save(product);
+        return convertToDto(updated);
     }
 
     private ProductDto convertToDto(Product product) {

@@ -1,4 +1,4 @@
-package java_pro.entity;
+package app.entity;
 
 import jakarta.persistence.*;
 
@@ -26,7 +26,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long id, Integer accountNumber, Double balance, String type, Long userId) {
+    public Product(Long id, Integer accountNumber, Double balance, String type, User user) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.balance = balance;
@@ -70,7 +70,7 @@ public class Product {
         this.type = type;
     }
 
-    public void setUserId(User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

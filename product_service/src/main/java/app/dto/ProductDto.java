@@ -1,4 +1,4 @@
-package java_pro.dto;
+package app.dto;
 
 public record ProductDto(
         Long id,

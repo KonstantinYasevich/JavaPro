@@ -1,8 +1,9 @@
-package java_pro.ontroller;
+package app.сontroller;
 
-import java_pro.dto.ProductDto;
+
+import app.dto.ProductDto;
+import app.service.ProductService;
 import org.springframework.web.bind.annotation.*;
-import java_pro.service.ProductService;
 
 import java.util.List;
 
@@ -25,6 +26,12 @@ public class ProductController {
     // 2. Запрос продукта по его productId
     @GetMapping("/{productId}")
     public ProductDto getProductById(@PathVariable("productId") Long productId) {
-        return productService.getProductById(productId);
+        return (app.dto.ProductDto) productService.getProductById(productId);
+    }
+
+    // 3. Изменение баланса
+    @PostMapping("/{productId}/charge")
+    public ProductDto chargeProduct(@PathVariable("productId") Long productId, @RequestParam("amount") Double amount) {
+        return productService.updateBalance(productId, amount);
     }
 }
