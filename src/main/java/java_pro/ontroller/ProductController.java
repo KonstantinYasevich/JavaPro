@@ -7,7 +7,7 @@ import java_pro.service.ProductService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("v1/api/products")
 public class ProductController {
 
     private final ProductService productService;
