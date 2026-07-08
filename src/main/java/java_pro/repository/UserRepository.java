@@ -1,6 +1,6 @@
-package dz4.repository;
+package java_pro.repository;
 
-import dz4.entity.User;
+import java_pro.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
