@@ -1,8 +1,11 @@
 package app.controller;
 
+import app.dto.ItemResponseDto;
 import app.dto.PaymentRequest;
 import app.dto.ProductDto;
+import app.exception.CustomException;
 import app.service.PaymentCoreService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,13 +20,11 @@ public class PaymentController {
         this.paymentCoreService = paymentCoreService;
     }
 
-    // 1. Запрос продуктов клиента через платежный сервис
     @GetMapping("/user-products/{userId}")
     public List<ProductDto> getProducts(@PathVariable("userId") Long userId) {
         return paymentCoreService.getUserProductsFromProductService(userId);
     }
 
-    // 2. Исполнение платежа
     @PostMapping("/execute")
     public String pay(@RequestBody PaymentRequest request) {
         return paymentCoreService.executePayment(request);

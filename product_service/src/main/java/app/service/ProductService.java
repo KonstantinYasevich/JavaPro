@@ -1,12 +1,15 @@
 package app.service;
 
 import app.entity.Product;
+import app.exception.CustomException;
 import app.repository.ProductRepository;
 import app.dto.ProductDto;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,25 +23,28 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public List<ProductDto> getProductsByUserId(Long userId) {
-        return productRepository.findByUser_Id(userId).stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toList());
+        return Optional.of(productRepository.findByUser_Id(userId))
+                .filter(list -> !list.isEmpty()) // Если список пустой, Optional станет empty
+                .map(list -> list.stream()
+                        .map(this::convertToDto)
+                        .collect(Collectors.toList()))
+                .orElseThrow(() -> new CustomException(404, "Products not found for user: " + userId));
     }
 
     @Transactional(readOnly = true)
     public ProductDto getProductById(Long productId) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new RuntimeException("Продукт с id " + productId + " не найден"));
+                .orElseThrow(() -> new CustomException(404, "Продукт с id " + productId + " не найден"));
         return convertToDto(product);
     }
 
     @Transactional
     public ProductDto updateBalance(Long productId, Double amount) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new RuntimeException("Продукт с id " + productId + " не найден"));
+                .orElseThrow(() -> new CustomException(404, "Продукт с id " + productId + " не найден"));
 
         if (product.getType().equals("Дебетовая карта") && (product.getBalance() + amount) < 0) {
-            throw new IllegalArgumentException("Недостаточно средств на дебетовой карте");
+            throw new CustomException(422, "Недостаточно средств на дебетовой карте");
         }
 
         product.setBalance(product.getBalance() + amount);
